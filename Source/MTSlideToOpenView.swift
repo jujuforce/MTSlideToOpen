@@ -20,7 +20,7 @@ public class MTSlideToOpenView: UIView {
     }()
     public let thumnailImageView: UIImageView = {
         let view = MTRoundImageView()
-        view.isUserInteractionEnabled = true        
+        view.isUserInteractionEnabled = true
         view.contentMode = .center
         return view
     }()
@@ -47,7 +47,7 @@ public class MTSlideToOpenView: UIView {
     }
     public var thumbnailViewLeadingDistance: CGFloat = 0.0 {
         didSet {
-            updateThumbnailViewLeadingPosition(thumbnailViewLeadingDistance)            
+            updateThumbnailViewLeadingPosition(thumbnailViewLeadingDistance)
         }
     }
     public var textLabelLeadingDistance: CGFloat = 0 {
@@ -85,6 +85,11 @@ public class MTSlideToOpenView: UIView {
             thumnailImageView.backgroundColor = defaultSlidingColor
         }
     }
+    public var defaultLabelTextColor:UIColor = UIColor(red:0.1, green:0.61, blue:0.84, alpha:1) {
+        didSet {
+            textLabel.textColor = defaultLabelTextColor
+        }
+    }
     public var defaultLabelText: String = "Swipe to open" {
         didSet {
             textLabel.text = defaultLabelText
@@ -110,7 +115,7 @@ public class MTSlideToOpenView: UIView {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        setupView()        
+        setupView()
     }
     
     private func setupView() {
@@ -165,10 +170,11 @@ public class MTSlideToOpenView: UIView {
     }
     
     private func setStyle() {
+        
         thumnailImageView.backgroundColor = defaultThumbnailColor
         textLabel.text = defaultLabelText
         textLabel.font = UIFont.systemFont(ofSize: 15.0)
-        textLabel.textColor = UIColor(red:0.1, green:0.61, blue:0.84, alpha:1)
+        textLabel.textColor = defaultLabelTextColor
         textLabel.textAlignment = .center
         sliderHolderView.backgroundColor = defaultSliderBackgroundColor
         sliderHolderView.layer.cornerRadius = sliderCornerRadious
@@ -242,7 +248,7 @@ public class MTSlideToOpenView: UIView {
         }
         if animated {
             UIView.animate(withDuration: animationVelocity) {
-               action()
+                action()
             }
         } else {
             action()
